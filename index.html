@@ -15,13 +15,55 @@
       animation: glitch-bg 4s infinite alternate;
     }
 
-    .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
+      background-size: cover;
+      opacity: 0.02;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    nav {
+      width: 100%;
       text-align: center;
-      line-height: 1.4;
+      padding: 1rem 0;
+      background-color: #0a0a0a;
+      position: fixed;
+      top: 0;
+      z-index: 10000;
+    }
+
+    nav a {
+      color: #00ffcc;
+      margin: 0 1rem;
+      text-decoration: none;
+      border-bottom: 1px dotted #00ffcc;
+    }
+    nav a:hover {
+      color: #ff0066;
+      border-bottom: 1px solid #ff0066;
+    }
+
+    .container {
+      position: relative;
+      top: 6rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
     }
 
     h1 {
@@ -47,37 +89,41 @@
       0% { background-color: #0f0f0f; }
       100% { background-color: #0a0a0a; }
     }
-
-    .noise {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
-      background-size: cover;
-      opacity: 0.02;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    a {
-      color: #00ffcc;
-      text-decoration: none;
-      border-bottom: 1px dotted #00ffcc;
-    }
-    a:hover {
-      color: #ff0066;
-      border-bottom: 1px solid #ff0066;
-    }
   </style>
 </head>
 <body>
   <div class="noise"></div>
+  <nav>
+    <a href="#" onclick="showSection('home')">home</a>
+    <a href="#" onclick="showSection('projects')">projects</a>
+    <a href="#" onclick="showSection('bio')">bio</a>
+    <a href="#" onclick="showSection('statement')">statement</a>
+  </nav>
   <div class="container">
-    <h1>the construct is listening</h1>
-    <p>cybernetic silence, synthetic dreams.<br>transmission pending...</p>
-    <p><a href="https://github.com/YOURUSERNAME">code is memory</a></p>
+    <section id="home" class="active">
+      <h1>the construct is listening</h1>
+      <p>cybernetic silence, synthetic dreams.<br>transmission pending...</p>
+      <p><a href="https://github.com/YOURUSERNAME">code is memory</a></p>
+    </section>
+    <section id="projects">
+      <h1>projects</h1>
+      <p>Interactive poetry engines, glitchy text experiments, narrative AI interfaces, and speculative simulations. All running cold.</p>
+    </section>
+    <section id="bio">
+      <h1>bio</h1>
+      <p>Digital media artist, systems thinker, and experimental narrative designer exploring the limits of interaction, language, and speculative computation. Based in Edmonton, working at the edges of genre and interface.</p>
+    </section>
+    <section id="statement">
+      <h1>artist statement</h1>
+      <p>I build digital objects that echo. My work probes the interface between computation and feeling, simulation and self, decay and identity. It manifests through tools, bots, and unplayable games — persistent artifacts in unstable systems.</p>
+    </section>
   </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
